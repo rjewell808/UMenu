@@ -2,4 +2,9 @@
 	<div class="col">
 		<h1>UMenu</h1>
 	</div>
+	<div class="col-12">
+		<% Dish.all.each do |dish|%>
+			<h1><%=dish.name%></h1>
+		<% end %>
+	</div>
 </div>

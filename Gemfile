@@ -37,6 +37,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'jquery-rails'
+gem 'webpacker', '~> 4.x'
 
 
 group :development, :test do

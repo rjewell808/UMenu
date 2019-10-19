@@ -2,11 +2,15 @@
   "name": "UMenu",
   "private": true,
   "dependencies": {
+    "@rails/webpacker": "^4.0.7",
     "js-autocomplete": "^1.0.4"
   },
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/rjewell808/UMenu.git",
   "author": "LITTLE-BERTHA <robertjewell808@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack-dev-server": "^3.8.2"
+  }
 }

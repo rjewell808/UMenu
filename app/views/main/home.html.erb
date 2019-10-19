@@ -2,9 +2,46 @@
 	<div class="col">
 		<h1>UMenu</h1>
 	</div>
-	<div class="col-12">
-		<% Dish.all.each do |dish|%>
+</div>
+<div class="row">
+
+	<% Date::DAYNAMES.each_with_index do |day, ind| %>
+		<%
+			start_date = Date.today
+			end_date = @targets.order(:date).first.date
+			weeks = (end_date..start_date).to_a.select {|k| k.wday == ind }.size
+		%>
+
+		<div class="col">
+			<%= day %>: <%= weeks == 0 ? 0 : ((@targets.where(day: day.downcase).size / weeks.to_f) * 100).to_i %>%
+		</div>
+	<% end %>
+</div>
+<%
+	frequencies = []
+	last_day = nil
+%>
+<% @targets.reverse.each do |dish|%>
+	<%
+		if !last_day.nil?
+			frequencies.append(last_day - dish.date)
+		end
+		last_day = dish.date
+	%>
+	<div class="row">
+		<div class="col">
 			<h1><%=dish.name%></h1>
-		<% end %>
+		</div>
+		<div class="col">
+			<p><%=dish.date%></p>
+		</div>
+		<div class="col">
+			<p><%=dish.day%></p>
+		</div>
+	</div>
+<% end %>
+<div class="row">
+	<div class="col">
+		<%= frequencies.sum / frequencies.size.to_f %>
 	</div>
 </div>

@@ -1,6 +1,11 @@
 <div class="row">
 	<div class="col">
-		<h1>UMenu</h1>
+		<h1><a href="/">UMenu</a></h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col">
+		<h1><%=@foodName%></h1>
 	</div>
 </div>
 <div class="row">
@@ -30,13 +35,13 @@
 	%>
 	<div class="row">
 		<div class="col">
-			<h1><%=dish.name%></h1>
-		</div>
-		<div class="col">
 			<p><%=dish.date%></p>
 		</div>
 		<div class="col">
 			<p><%=dish.day%></p>
+		</div>
+		<div class="col">
+			<p><%=dish.meal%></p>
 		</div>
 	</div>
 <% end %>

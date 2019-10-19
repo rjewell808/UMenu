@@ -1,47 +1,21 @@
-<div class="row">
-	<div class="col">
-		<h1>UMenu</h1>
-	</div>
-</div>
-<div class="row">
-
-	<% Date::DAYNAMES.each_with_index do |day, ind| %>
-		<%
-			start_date = Date.today
-			end_date = @targets.order(:date).first.date
-			weeks = (end_date..start_date).to_a.select {|k| k.wday == ind }.size
-		%>
-
-		<div class="col">
-			<%= day %>: <%= weeks == 0 ? 0 : ((@targets.where(day: day.downcase).size / weeks.to_f) * 100).to_i %>%
+<div class="welcome">
+	<div class="row mt-2">
+		<div class="col mx-auto">
+			<h1 class="main-title">UMenu</h1>
 		</div>
-	<% end %>
-</div>
-<%
-	frequencies = []
-	last_day = nil
-%>
-<% @targets.reverse.each do |dish|%>
-	<%
-		if !last_day.nil?
-			frequencies.append(last_day - dish.date)
-		end
-		last_day = dish.date
-	%>
+	</div>
 	<div class="row">
 		<div class="col">
-			<h1><%=dish.name%></h1>
+			<%= form_tag("/food/", method: :get, class: "form") do %>
+			  <div id="search-data" class="form-search search-data row" data-skills="<%= @foods.to_json %>">
+			  	<div class="col-12">
+				    <%= text_field_tag :q, nil, autocomplete: :off, class: "form-control search-input", placeholder: "What's for dinner?" %>
+				</div>
+				<div class="col-3 mx-auto mt-3">
+				    <%= submit_tag "Search", class: "btn btn-primary button-home w-100" %>
+				</div>
+			  </div>
+			<% end %>
 		</div>
-		<div class="col">
-			<p><%=dish.date%></p>
-		</div>
-		<div class="col">
-			<p><%=dish.day%></p>
-		</div>
-	</div>
-<% end %>
-<div class="row">
-	<div class="col">
-		<%= frequencies.sum / frequencies.size.to_f %>
 	</div>
 </div>

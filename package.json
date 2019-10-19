@@ -1,5 +1,12 @@
 {
   "name": "UMenu",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "js-autocomplete": "^1.0.4"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rjewell808/UMenu.git",
+  "author": "LITTLE-BERTHA <robertjewell808@gmail.com>",
+  "license": "MIT"
 }

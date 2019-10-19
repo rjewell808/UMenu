@@ -16,4 +16,5 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require activestorage
+//= require js-autocomplete/auto-complete.js
 //= require_tree .

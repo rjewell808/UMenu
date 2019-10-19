@@ -1,3 +1,29 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.welcome {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.main-title {
+	text-align: center;
+	font-size: 5rem;
+}
+
+.search-input {
+	height: 70px;
+    font-size: 3rem;
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+    background-color: var(--light);
+}
+
+.search-input::placeholder{
+	color: gray;
+	opacity: 0.3;
+}

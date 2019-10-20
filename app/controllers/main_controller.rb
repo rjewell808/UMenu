@@ -3,13 +3,9 @@ require 'set'
 
 class MainController < ApplicationController
 	def home
-		Dish.delete_all
-		Food.delete_all
-		for x in 0..45
-			API.logDay(Time.zone.today - x)
+		if Dish.where(date: Time.zone.today).size < 1
+			API.logDay(Time.zone.today)
 		end
-		# API.logDay(Date.today)
-
 		@foods = Food.pluck(:name).uniq
 	end
 

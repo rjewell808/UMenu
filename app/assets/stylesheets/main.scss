@@ -39,13 +39,13 @@ body {
 }
 
 .btn-primary {
-	background-color: #94795d;
-	border-color: #94795d;
+	background-color: #666666;
+	border-color: #666666;
 }
 
 .btn-primary:hover, .btn-primary:active {
-	background-color: #beb395 !important;
-	border-color: #beb395 !important;
+	background-color: #999999 !important;
+	border-color: #999999 !important;
 }
 
 .btn-primary:focus, .btn-primary:active {
@@ -81,8 +81,12 @@ body {
     outline: none;
     border: none;
     border-radius: .4rem;
-    background-color: #c7ac38;
-    box-shadow: 0px 3px 10px 4px #dcb81e45;
+    background-color: #c1625f;
+    box-shadow: 0px 3px 10px 4px #e05f5f45;
+}
+
+.search-input:focus {
+	outline-color: #e05f5f45;
 }
 
 .search-input::placeholder{
@@ -92,7 +96,21 @@ body {
 }
 
 .row.record {
+	background-color: #aaaaaa;
+	box-shadow: 0px 5px 10px 1px #0000004d;
+    border-radius: .5rem;
+    padding: 5px 0px;
+    margin-bottom: 15px;
 
+    p {
+    	margin-bottom: 0;
+    }
+
+    font-weight: 600;
+}
+
+.row.record.offset {
+	background-color: #eeeeee;
 }
 
 .nutrition-table {

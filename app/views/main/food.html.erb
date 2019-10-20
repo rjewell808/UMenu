@@ -1,45 +1,3 @@
-<%
-	frequencies = []
-	last_day = nil
-
-	uniq_dates = @targets.pluck(:date).uniq
-	puts uniq_dates
-
-	uniq_dates.each do |date|
-		if last_day == date
-			next
-		end
-
-		if !last_day.nil?
-			frequencies.append(date - last_day)
-		end
-		last_day = date
-	end
-
-	avg_cycle = frequencies.sum / frequencies.size.to_f
-	next_serving = -1
-
-	today = Time.zone.today
-	puts avg_cycle
-	puts today
-	puts last_day
-	puts (today - last_day).to_i
-	puts avg_cycle - (today - last_day)
-
-	if avg_cycle % 7 == 0
-		next_serving = (today + (avg_cycle - (today - last_day)))
-	elsif avg_cycle == 1
-		next_serving = today + 1
-	end
-
-	puts next_serving
-		
-	if next_serving != -1
-		next_serving_days = (next_serving - today).to_i
-	end
-
-%>
-
 <div class="row">
 	<div class="col-5">
 		<div class="row">
@@ -56,12 +14,12 @@
 	<div class="col-7">
 		<div class="row">
 			<div class="col">
-				<h1 class="food-title">Avg Recur Rate: <%= avg_cycle %> days</h1>
+				<h1 class="food-title">Avg Recur Rate: <%= @avg_cycle %> days</h1>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col">
-				<h1 class="food-title">Last Served On: <%= last_day.strftime("%a, %-m/%-d") %></h1>
+				<h1 class="food-title">Last Served On: <%= @last_day.strftime("%a, %-m/%-d") %></h1>
 			</div>
 		</div>
 		<div class="row mt-4">
@@ -71,44 +29,100 @@
 		</div>
 		<div class="row">
 			<div class="col-auto mx-auto">
-				<% if next_serving == -1 %>
+				<% if @next_serving == -1 %>
 					<h1 class="food-title">Unknown</h1>
-				<% elsif next_serving_days == 0 %>
+				<% elsif @next_serving_days == 0 %>
 					<h1 class="food-title">Today!</h1>
 				<% else %>
-					<h1 class="food-title"><small>on a</small> <%=next_serving.strftime("%A")%><small> in</small> <%=next_serving_days%> <smalll>Day<%= next_serving_days > 1 ? "s" : "" %></small></h1>
+					<h1 class="food-title"><small>on a</small> <%=@next_serving.strftime("%A")%><small> in</small> <%=@next_serving_days%> <smalll>Day<%= @next_serving_days > 1 ? "s" : "" %></small></h1>
 				<% end %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<canvas id="myChart" width="400" height="200"></canvas>
+				<script>
+				var ctx = document.getElementById('myChart').getContext('2d');
+				var weights = <%=raw @days_weights %>;
+				console.log(weights);
+				var myChart = new Chart(ctx, {
+				    type: 'bar',
+				    data: {
+				        labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+				        datasets: [{
+				            label: '% of availability',
+				            data: weights,
+				            backgroundColor: [
+				                'rgba(255, 99, 132, 0.2)',
+				                'rgba(54, 162, 235, 0.2)',
+				                'rgba(255, 206, 86, 0.2)',
+				                'rgba(75, 192, 192, 0.2)',
+				                'rgba(153, 102, 255, 0.2)',
+				                'rgba(255, 159, 64, 0.2)'
+				            ],
+				            borderColor: [
+				                'rgba(255, 99, 132, 1)',
+				                'rgba(54, 162, 235, 1)',
+				                'rgba(255, 206, 86, 1)',
+				                'rgba(75, 192, 192, 1)',
+				                'rgba(153, 102, 255, 1)',
+				                'rgba(255, 159, 64, 1)'
+				            ],
+				            borderWidth: 1
+				        }]
+				    },
+				    options: {
+				    	plugins: {
+				    		labels: {
+				    			render: 'value',
+				    			fontColor: '#fff',
+				    			showActualPercentages: true,
+				    		},
+				    	},
+				    	legend: {
+				    		labels: {
+				    			fontColor: 'white',
+				    		},
+				    	},
+				        scales: {
+				            yAxes: [{
+				                ticks: {
+				                	fontColor: "white",
+				                    beginAtZero: true,
+				                    suggestedMin: 0,
+                    				suggestedMax: 100
+				                }
+				            }],
+				            xAxes: [{
+				            	ticks: {
+				            		fontColor: "white",
+				            	}
+				            }]
+				        }
+				    }
+				});
+				</script>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- <div class="row">
-
-	<% Date::DAYNAMES.each_with_index do |day, ind| %>
-		<%
-			start_date = Date.today
-			end_date = @targets.first.date
-			weeks = (end_date..start_date).to_a.select {|k| k.wday == ind }.size
-		%>
-
-		<div class="col">
-			<%= day %>: <%= weeks == 0 ? 0 : ((@targets.where(day: day.downcase).size / weeks.to_f) * 100).to_i %>%
-		</div>
-	<% end %>
-</div> -->
-<div class="row mt-2">
+<div class="row mt-4">
 	<div class="col">
 		<h1 class="food-title">Last Seen</h1>
 	</div>
 </div>
+<%
+	offset = true
+%>
 <% @targets.reverse.each do |dish|%>
 	<%
-		if !last_day.nil?
-			frequencies.append(last_day - dish.date)
+		if !@last_day.nil?
+			@frequencies.append(@last_day - dish.date)
 		end
-		last_day = dish.date
+		@last_day = dish.date
+		offset = !offset
 	%>
-	<div class="row record">
+	<div class="row record <%=offset ? "offset" : ""%>">
 
 		<%
 			icon = ""
@@ -131,7 +145,7 @@
 			<p><%=dish.date.strftime("%-m/%-d")%>, <%=dish.day.titleize%></p>
 		</div>
 		<div class="col">
-			<p><%=(today - dish.date).to_i%> Days Ago</p>
+			<p><%=(@today - dish.date).to_i%> Days Ago</p>
 		</div>
 		<div class="col">
 			<p><i class="<%=icon%>"></i> <%=dish.meal.titleize%></p>

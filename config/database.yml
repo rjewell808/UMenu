@@ -8,12 +8,12 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: localhost
+  host: ''
 development:
   <<: *default
   database: umenu_db_dev
   username: postgres
-  password: 
+  password: password
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -22,7 +22,7 @@ test:
   <<: *default
   database: umenu_db_test
   username: postgres
-  password: 
+  password: password
 
 production:
   <<: *default

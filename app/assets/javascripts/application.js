@@ -17,4 +17,6 @@
 //= require bootstrap-sprockets
 //= require activestorage
 //= require js-autocomplete/auto-complete.js
+//= require chart.js/dist/Chart.js
+//= require chartjs-plugin-labels/src/chartjs-plugin-labels.js
 //= require_tree .

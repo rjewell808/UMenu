@@ -3,11 +3,11 @@ require 'set'
 
 class MainController < ApplicationController
 	def home
-		# Dish.delete_all
-		# Food.delete_all
-		# for x in 0..45
-		# 	API.logDay(Time.zone.today - x)
-		# end
+		Dish.delete_all
+		Food.delete_all
+		for x in 0..45
+			API.logDay(Time.zone.today - x)
+		end
 		# API.logDay(Date.today)
 
 		@foods = Food.pluck(:name).uniq
@@ -52,7 +52,6 @@ class MainController < ApplicationController
 		elsif @avg_cycle == 1
 			@next_serving = @today + 1
 		elsif @days_weights.include? 100
-			puts "yes"
 			weight_index = @last_day.wday
 			total = 0
 
@@ -69,7 +68,6 @@ class MainController < ApplicationController
 					total += 1
 				end
 			end
-
 		end
 			
 		if @next_serving != -1

@@ -14,12 +14,12 @@
 	<div class="col-7">
 		<div class="row">
 			<div class="col">
-				<h1 class="food-title">Avg Recur Rate: <%= @avg_cycle %> days</h1>
+				<h1 class="food-title">Avg Recur Rate: <span class="answer"><%= @avg_cycle.round(2) %> days</span></h1>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col">
-				<h1 class="food-title">Last Served On: <%= @last_day.strftime("%a, %-m/%-d") %></h1>
+				<h1 class="food-title">Last Served On: <span class="answer"><%= @last_day.strftime("%a, %-m/%-d") %></span></h1>
 			</div>
 		</div>
 		<div class="row mt-4">

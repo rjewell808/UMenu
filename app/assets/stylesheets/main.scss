@@ -2,6 +2,45 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+	font-family: 'Open Sans', sans-serif;
+	background-color: #881c1c;
+}
+
+.logo {
+	width: 300px;
+    height: auto;
+    position: absolute;
+    top: 20px;
+    background-color: white;
+    padding: 12px;
+    border-radius: 1rem;
+    box-shadow: 0px 5px 10px 1px #0000004d;
+}
+
+.btn-primary {
+	background-color: #94795d;
+	border-color: #94795d;
+}
+
+.btn-primary:hover, .btn-primary:active {
+	background-color: #beb395 !important;
+	border-color: #beb395 !important;
+}
+
+.btn-primary:focus, .btn-primary:active {
+	box-shadow: 0 0 0 0.2rem rgba(148, 121, 93, 0.5);
+}
+
+.dropdown-umenu {
+	font-size: 1.3rem;
+
+	.autocomplete-suggestion {
+		padding: 5px 0px;
+
+	}
+}
+
 .welcome {
 	position: fixed;
 	top: 50%;
@@ -12,6 +51,8 @@
 .main-title {
 	text-align: center;
 	font-size: 5rem;
+	color: white;
+	font-weight: 600;
 }
 
 .search-input {
@@ -26,4 +67,5 @@
 .search-input::placeholder{
 	color: gray;
 	opacity: 0.3;
+	font-size: 2rem;
 }

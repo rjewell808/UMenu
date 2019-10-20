@@ -6,6 +6,7 @@ document.addEventListener("turbolinks:load", function() {
     new autoComplete({
       selector: searchInput,
       minChars: 2,
+      menuClass: "dropdown-umenu",
       source: function(term, suggest){
           term = term.toLowerCase();
           const choices = skills;

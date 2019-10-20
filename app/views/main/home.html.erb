@@ -1,7 +1,7 @@
 <div class="welcome">
 	<div class="row mt-2">
 		<div class="col mx-auto">
-			<h1 class="main-title">UMenu</h1>
+			<h1 class="main-title">What's for dinner?</h1>
 		</div>
 	</div>
 	<div class="row">
@@ -9,13 +9,15 @@
 			<%= form_tag("/food/", method: :get, class: "form") do %>
 			  <div id="search-data" class="form-search search-data row" data-skills="<%= @foods.to_json %>">
 			  	<div class="col-12">
-				    <%= text_field_tag :q, nil, autocomplete: :off, class: "form-control search-input", placeholder: "What's for dinner?" %>
+				    <%= text_field_tag :q, nil, autocomplete: :off, class: "form-control search-input", placeholder: "Ex: " + @foods.sample %>
 				</div>
-				<div class="col-3 mx-auto mt-3">
-				    <%= submit_tag "Search", class: "btn btn-primary button-home w-100" %>
+				<div class="col-3 ml-auto mt-3">
+				    <%= submit_tag "Predict", class: "btn btn-primary button-home w-100" %>
 				</div>
 			  </div>
 			<% end %>
 		</div>
 	</div>
 </div>
+
+<%= image_tag("logo.png", class: "logo") %>

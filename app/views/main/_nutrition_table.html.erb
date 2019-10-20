@@ -1,0 +1,80 @@
+<div class="row nutrition-table">
+	<div class="col-12">
+		<p class="title text-center">Nutrition Facts</p>
+	</div>
+	<div class="col-12">
+		<strong>Serving Size</strong> <%= food.serving%>
+		<hr class="mt-1 mb-2">
+	</div>
+	<div class="col-10">
+		<strong>Calories</strong> <%= food.calories %>
+	</div>
+	<div class="col-2">
+		DV
+	</div>
+	<div class="col-12 py-0">
+		<hr class="mt-1 mb-2">
+	</div>
+	<div class="col-9">
+		<strong>Total Fat</strong> <%= food.fat %>
+	</div>
+	<div class="col-3">
+		<p class="dv"><%= food.fat_dv %>%</p>
+	</div>
+	<div class="col-9">
+		<p class="indent">Saturated Fat <%= food.sat_fat %></p>
+	</div>
+	<div class="col-3">
+		<p class="dv"><%= food.sat_fat_dv %>%</p>
+	</div>
+	<div class="col-12">
+		<p class="indent">Trans Fat <%= food.trans_fat %></p>
+		<hr class="mt-1 mb-2">
+	</div>
+	<div class="col-9">
+		<strong>Cholesterol</strong> <%= food.cholestrol %>
+	</div>
+	<div class="col-3">
+		<p class="dv"><%= food.cholestrol_dv %>%</p>
+	</div>
+	<div class="col-12 py-0">
+		<hr class="mt-1 mb-2">
+	</div>
+	<div class="col-9">
+		<strong>Sodium</strong> <%= food.sodium %>
+	</div>
+	<div class="col-3">
+		<p class="dv"><%= food.sodium_dv %>%</p>
+	</div>
+	<div class="col-12 py-0">
+		<hr class="mt-1 mb-2">
+	</div>
+	<div class="col-9">
+		<strong>Total Carbohydrate</strong> <%= food.total_carb %>
+	</div>
+	<div class="col-3">
+		<p class="dv"><%= food.total_carb_dv %>%</p>
+	</div>
+	<div class="col-9">
+		<p class="indent">Dietary Fiber <%= food.dietary_fiber %></p>
+	</div>
+	<div class="col-3">
+		<p class="dv"><%= food.dietary_fiber_dv %>%</p>
+	</div>
+	<div class="col-9">
+		<p class="indent">Sugars <%= food.sugars %></p>
+	</div>
+	<div class="col-3">
+		<p class="dv"><%= food.sugars_dv %>%</p>
+	</div>
+	<div class="col-12 py-0">
+		<hr class="mt-1 mb-2">
+	</div>
+	<div class="col-12">
+		<strong>Protein</strong> <%= food.protein %>
+		<hr class="mt-1 mb-2">
+	</div>
+	<div class="col-12">
+		<p class="subtitle">*Percent Daily Values (DV) are based on a 2,000 calorie diet.</p>
+	</div>
+</div>

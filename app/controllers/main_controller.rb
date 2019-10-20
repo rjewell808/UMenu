@@ -14,7 +14,7 @@ class MainController < ApplicationController
 	end
 
 	def food
-		@targets = Dish.where(name: params[:q]).order(:date)
-		@foodName = params[:q]
+		@food = Food.find_by(name: params[:q])
+		@targets = Dish.where(food_id: @food.id).order(:date)
 	end
 end

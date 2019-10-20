@@ -84,3 +84,34 @@ body {
 	opacity: 0.3;
 	font-size: 2rem;
 }
+
+.nutrition-table {
+	background-color: white;
+    box-shadow: 0px 5px 10px 1px #0000004d;
+    border-radius: .5rem;
+    padding: 10px 0px;
+
+    .subtitle {
+    	font-size: 0.8rem;
+    	margin-bottom: 0;
+    }
+
+    .title {
+    	font-size: 1.5rem;
+    	font-weight: 800;
+    }
+
+	p {
+		font-weight: 600;
+	}
+
+	.dv {
+		text-align: right;
+		margin-bottom: 0;
+	}
+
+	.indent {
+		margin-bottom: 0;
+		padding-left: 15px;
+	}
+}

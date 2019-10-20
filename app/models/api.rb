@@ -45,12 +45,13 @@ class API
 							total_carb: values["data-total-carb=\""],
 							total_carb_dv: values["data-total-carb-dv=\""],
 							dietary_fiber: values["data-dietary-fiber=\""],
-							dietary_fiber_dv: values["data-dietary-fiber=\""],
+							dietary_fiber_dv: values["data-dietary-fiber-dv=\""],
 							sugars: values["data-sugars=\""],
 							sugars_dv: values["data-sugars-dv=\""],
 							protein: values["data-protein=\""],
 							protein_dv: values["data-protein-dv=\""])
 					end
+					Dish.create(food_id: Food.find_by(name: values["data-dish-name=\""]).id, meal: meal, date: date, day: date.strftime("%A").downcase)
 				end
 			end
 		end

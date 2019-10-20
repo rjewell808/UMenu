@@ -39,7 +39,16 @@
 
 <div class="row">
 	<div class="col">
-		<h1 class="food-title"><%=@foodName%></h1>
+		<div class="row">
+			<div class="col">
+				<h1 class="food-title"><%=@food.name%></h1>
+			</div>
+		</div>
+		<div class="row mt-2">
+			<div class="col-7">
+				<%= render 'nutrition_table', food: @food %>
+			</div>
+		</div>
 	</div>
 	<div class="col">
 		<div class="row">

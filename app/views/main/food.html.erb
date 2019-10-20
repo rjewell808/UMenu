@@ -1,11 +1,61 @@
+<%
+	frequencies = []
+	last_day = nil
+
+	@targets.each do |dish|
+		if last_day == dish.date
+			next
+		end
+
+		if !last_day.nil?
+			frequencies.append(dish.date - last_day)
+		end
+		last_day = dish.date
+	end
+
+	avg_cycle = frequencies.sum / frequencies.size.to_f
+	next_serving = -1
+
+	today = Time.zone.today
+	puts avg_cycle
+	puts today
+	puts last_day
+	puts (today - last_day).to_i
+	puts avg_cycle - (today - last_day)
+
+	if avg_cycle % 7 == 0
+		next_serving = (today + (avg_cycle - (today - last_day)))
+	elsif avg_cycle == 1
+		next_serving = today + 1
+	end
+
+	puts next_serving
+		
+	if next_serving != -1
+		next_serving_days = (next_serving - today).to_i
+	end
+
+%>
+
 <div class="row">
 	<div class="col">
-		<h1><a href="/">UMenu</a></h1>
+		<h1 class="food-title"><%=@foodName%></h1>
 	</div>
-</div>
-<div class="row">
 	<div class="col">
-		<h1><%=@foodName%></h1>
+		<div class="row">
+			<div class="col">
+				<h2 class="secondary-title">Will next be served on...</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<% if next_serving == -1 %>
+					<h1 class="food-title">Unknown</h1>
+				<% else %>
+					<h1 class="food-title"><small>a</small> <%=next_serving.strftime("%A")%><small> in</small> <%=next_serving_days%> <smalll>Day<%= next_serving_days > 1 ? "s" : "" %></small></h1>
+				<% end %>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="row">
@@ -13,7 +63,7 @@
 	<% Date::DAYNAMES.each_with_index do |day, ind| %>
 		<%
 			start_date = Date.today
-			end_date = @targets.order(:date).first.date
+			end_date = @targets.first.date
 			weeks = (end_date..start_date).to_a.select {|k| k.wday == ind }.size
 		%>
 
@@ -22,10 +72,6 @@
 		</div>
 	<% end %>
 </div>
-<%
-	frequencies = []
-	last_day = nil
-%>
 <% @targets.reverse.each do |dish|%>
 	<%
 		if !last_day.nil?
@@ -45,8 +91,3 @@
 		</div>
 	</div>
 <% end %>
-<div class="row">
-	<div class="col">
-		<%= frequencies.sum / frequencies.size.to_f %>
-	</div>
-</div>

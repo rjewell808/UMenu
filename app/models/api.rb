@@ -22,7 +22,7 @@ class API
 					mealName = lunch[indStart..indEnd]
 
 					if !mealName.blank?
-						if Dish.where(name: mealName, meal: meal, date: date).size < 1
+						if Dish.where(name: mealName, date: date).size < 1
 							Dish.create(name: mealName, meal: meal, date: date, day: date.strftime("%A").downcase)
 						end
 						meals.append(mealName)

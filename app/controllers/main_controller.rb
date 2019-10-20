@@ -1,10 +1,11 @@
 require 'net/http'
+require 'set'
 
 class MainController < ApplicationController
 	def home
 		# Dish.delete_all
 		# for x in 0..45
-		# 	API.logDay(Date.today - x)
+		# 	API.logDay(Time.zone.today - x)
 		# end
 		#API.logDay(Date.today - 3)
 

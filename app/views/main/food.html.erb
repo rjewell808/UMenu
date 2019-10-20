@@ -96,6 +96,11 @@
 		</div>
 	<% end %>
 </div> -->
+<div class="row mt-2">
+	<div class="col">
+		<h1 class="food-title">Last Seen</h1>
+	</div>
+</div>
 <% @targets.reverse.each do |dish|%>
 	<%
 		if !last_day.nil?
@@ -103,15 +108,33 @@
 		end
 		last_day = dish.date
 	%>
-	<div class="row">
+	<div class="row record">
+
+		<%
+			icon = ""
+
+			case dish.meal
+			when "lunch"
+				icon = "fas fa-pizza-slice"
+			when "late night"
+				icon = "fas fa-ice-cream"
+			when "breakfast"
+				icon = "fas fa-bacon"
+			when "dinner"
+				icon = "fas fa-hamburger"
+			else
+				icon = ""
+			end
+		%>
+
 		<div class="col">
-			<p><%=dish.date%></p>
+			<p><%=dish.date.strftime("%-m/%-d")%>, <%=dish.day.titleize%></p>
 		</div>
 		<div class="col">
-			<p><%=dish.day%></p>
+			<p><%=(today - dish.date).to_i%> Days Ago</p>
 		</div>
 		<div class="col">
-			<p><%=dish.meal%></p>
+			<p><i class="<%=icon%>"></i> <%=dish.meal.titleize%></p>
 		</div>
 	</div>
 <% end %>

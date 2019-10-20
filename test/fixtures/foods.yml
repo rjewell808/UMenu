@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  allergens: MyString
+  serving: MyString
+  calories: MyString
+  fat: MyString
+  fat_dv: MyString
+  sat_fat: MyString
+
+two:
+  name: MyString
+  allergens: MyString
+  serving: MyString
+  calories: MyString
+  fat: MyString
+  fat_dv: MyString
+  sat_fat: MyString

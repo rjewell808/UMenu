@@ -3,13 +3,14 @@ require 'set'
 
 class MainController < ApplicationController
 	def home
-		# Dish.delete_all
+		Dish.delete_all
+		Food.delete_all
 		# for x in 0..45
 		# 	API.logDay(Time.zone.today - x)
 		# end
-		#API.logDay(Date.today - 3)
+		API.logDay(Date.today)
 
-		@foods = Dish.pluck(:name).uniq
+		@foods = Food.pluck(:name).uniq
 	end
 
 	def food

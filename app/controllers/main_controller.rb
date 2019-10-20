@@ -65,6 +65,10 @@ class MainController < ApplicationController
 				end
 			end
 		end
+
+		if uniq_dates.last == @today
+			@next_serving = @today
+		end
 			
 		if @next_serving != -1
 			@next_serving_days = (@next_serving - @today).to_i

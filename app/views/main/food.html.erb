@@ -29,10 +29,10 @@
 		</div>
 		<div class="row">
 			<div class="col-auto mx-auto">
-				<% if @next_serving == -1 %>
-					<h1 class="food-title">Unknown</h1>
-				<% elsif @next_serving_days == 0 %>
+				<% if @next_serving_days == 0 %>
 					<h1 class="food-title">Today!</h1>
+				<% elsif @next_serving == -1 %>
+					<h1 class="food-title">Unknown</h1>
 				<% else %>
 					<h1 class="food-title"><small>on a</small> <%=@next_serving.strftime("%A")%><small> in</small> <%=@next_serving_days%> <smalll>Day<%= @next_serving_days > 1 ? "s" : "" %></small></h1>
 				<% end %>

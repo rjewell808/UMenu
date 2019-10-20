@@ -2,15 +2,18 @@
 	frequencies = []
 	last_day = nil
 
-	@targets.each do |dish|
-		if last_day == dish.date
+	uniq_dates = @targets.pluck(:date).uniq
+	puts uniq_dates
+
+	uniq_dates.each do |date|
+		if last_day == date
 			next
 		end
 
 		if !last_day.nil?
-			frequencies.append(dish.date - last_day)
+			frequencies.append(date - last_day)
 		end
-		last_day = dish.date
+		last_day = date
 	end
 
 	avg_cycle = frequencies.sum / frequencies.size.to_f
@@ -38,38 +41,48 @@
 %>
 
 <div class="row">
-	<div class="col">
+	<div class="col-5">
 		<div class="row">
 			<div class="col">
-				<h1 class="food-title"><%=@food.name%></h1>
+				<h1 class="text-center food-title"><%=@food.name%></h1>
 			</div>
 		</div>
 		<div class="row mt-2">
-			<div class="col-7">
+			<div class="col-7 mx-auto">
 				<%= render 'nutrition_table', food: @food %>
 			</div>
 		</div>
 	</div>
-	<div class="col">
+	<div class="col-7">
 		<div class="row">
 			<div class="col">
-				<h2 class="secondary-title">Will next be served...</h2>
+				<h1 class="food-title">Avg Recur Rate: <%= avg_cycle %> days</h1>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col">
+				<h1 class="food-title">Last Served On: <%= last_day.strftime("%a, %-m/%-d") %></h1>
+			</div>
+		</div>
+		<div class="row mt-4">
+			<div class="col-auto mx-auto">
+				<h2 class="secondary-title">Will next be served...</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-auto mx-auto">
 				<% if next_serving == -1 %>
 					<h1 class="food-title">Unknown</h1>
 				<% elsif next_serving_days == 0 %>
 					<h1 class="food-title">Today!</h1>
 				<% else %>
-					<h1 class="food-title"><small>a</small> <%=next_serving.strftime("%A")%><small> in</small> <%=next_serving_days%> <smalll>Day<%= next_serving_days > 1 ? "s" : "" %></small></h1>
+					<h1 class="food-title"><small>on a</small> <%=next_serving.strftime("%A")%><small> in</small> <%=next_serving_days%> <smalll>Day<%= next_serving_days > 1 ? "s" : "" %></small></h1>
 				<% end %>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="row">
+<!-- <div class="row">
 
 	<% Date::DAYNAMES.each_with_index do |day, ind| %>
 		<%
@@ -82,7 +95,7 @@
 			<%= day %>: <%= weeks == 0 ? 0 : ((@targets.where(day: day.downcase).size / weeks.to_f) * 100).to_i %>%
 		</div>
 	<% end %>
-</div>
+</div> -->
 <% @targets.reverse.each do |dish|%>
 	<%
 		if !last_day.nil?
